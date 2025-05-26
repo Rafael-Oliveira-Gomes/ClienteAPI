@@ -16,6 +16,7 @@ public static class AddRepositorySetup
             options.UseNpgsql(configuration.GetConnectionString("PostgresConnection"));
         });
         services.AddScoped<IBaseRepository<Cliente>, BaseRepository<Cliente>>();
+        services.AddScoped<IClienteRepository, ClienteRepository>();
         return services;
     }
 }

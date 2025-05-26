@@ -36,7 +36,7 @@ internal static class SwaggerConfig
 
             // Incluir comentários XML dos projetos referenciados que começam com "Beneficios.Api"
             var referencedProjectsXmlDocPaths = executingAssembly.GetReferencedAssemblies()
-                .Where(assembly => assembly.Name != null && assembly.Name.StartsWith("Beneficios.Api", StringComparison.InvariantCultureIgnoreCase))
+                .Where(assembly => assembly.Name != null && assembly.Name.StartsWith("Cliente.Api", StringComparison.InvariantCultureIgnoreCase))
                 .Select(assembly => Path.Combine(AppContext.BaseDirectory, $"{assembly.Name}.xml"));
 
             foreach (var xmlDocPath in referencedProjectsXmlDocPaths)
