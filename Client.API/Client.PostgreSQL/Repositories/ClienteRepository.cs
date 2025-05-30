@@ -12,12 +12,17 @@ public class ClienteRepository : BaseRepository<Cliente>, IClienteRepository
     }
     public async Task<Cliente?> ConsultarPorId(int id)
     {
-        return await _context.Cliente.FindAsync(id);
+        return await _context.Clientes.FindAsync(id);
     }
 
     public async Task<Cliente?> ConsultarPorNome(string nome)
     {
-        return await _context.Cliente
+        return await _context.Clientes
             .FirstOrDefaultAsync(c => c.Nome == nome);
     }
+    public async Task<IEnumerable<Cliente>> ConsultarTodos()
+    {
+        return await _context.Clientes.ToListAsync();
+    }
+
 }

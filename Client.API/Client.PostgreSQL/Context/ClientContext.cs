@@ -13,5 +13,6 @@ public class ClientContext : DbContext
         base.OnModelCreating(modelBuilder);
     }
 
-    public DbSet<Cliente> Cliente { get; set; }
+    public DbSet<Cliente> Clientes { get; set; }
+    public DbSet<Tatuador> Tatuadores { get; set; }
 }

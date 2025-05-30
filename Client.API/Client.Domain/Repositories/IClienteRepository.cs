@@ -6,4 +6,5 @@ public interface IClienteRepository : IBaseRepository<Cliente>
 {
     Task<Cliente?> ConsultarPorId(int id);
     Task<Cliente?> ConsultarPorNome(string nome);
+    Task<IEnumerable<Cliente>> ConsultarTodos();
 }
