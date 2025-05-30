@@ -6,4 +6,5 @@ namespace Client.Domain.Queries;
 
 public record class ClienteQuery(int clienteId) : IRequest<Response<ClienteViewModel>>;
 
-public record class TodosClientes() : IRequest<Response<IEnumerable<ClienteViewModel>>>;
+public record class TodosClientesQuery() : IRequest<IEnumerable<ClienteViewModel>>;
+

@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using Client.Domain.Entities.Command;
+using Client.Domain.Entities.ViewModel;
 using Client.Domain.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -65,9 +66,11 @@ public class ClienteController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAllClientes(CancellationToken cancellationToken)
     {
-        var result = await _mediator.Send(new TodosClientes(), cancellationToken);
-        return result.IsSuccess ? Ok(result) : BadRequest(result);
+        var result = await _mediator.Send(new TodosClientesQuery(), cancellationToken);
+
+        if (result is IEnumerable<ClienteViewModel> clientes)
+            return Ok(clientes);
+
+        return BadRequest("Erro ao obter a lista de clientes.");
     }
-
-
 }

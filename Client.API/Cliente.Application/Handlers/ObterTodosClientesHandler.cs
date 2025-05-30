@@ -1,24 +1,15 @@
 ﻿using Client.Domain.Entities.ViewModel;
 using Client.Domain.Queries;
 using Client.Domain.Repositories;
-using Client.Domain.Shareds;
 using MediatR;
 
 namespace Cliente.Application.Handlers;
 
-public class ObterTodosClientesHandler : IRequestHandler<TodosClientes, Response<IEnumerable<ClienteViewModel>>>
+public class ObterTodosClientesHandler(IClienteRepository clienteRepository) : IRequestHandler<TodosClientesQuery, IEnumerable<ClienteViewModel>>
 {
-    private readonly IClienteRepository _clienteRepository;
-
-    public ObterTodosClientesHandler(IClienteRepository clienteRepository)
+    public async Task<IEnumerable<ClienteViewModel>> Handle(TodosClientesQuery request, CancellationToken cancellationToken)
     {
-        _clienteRepository = clienteRepository ?? throw new ArgumentNullException(nameof(clienteRepository));
-    }
-
-    public async Task<Response<IEnumerable<ClienteViewModel>>> Handle(TodosClientes request, CancellationToken cancellationToken)
-    {
-        var clientes = await _clienteRepository.ConsultarTodos();
-        var viewModels = clientes.Select(c => new ClienteViewModel(c));
-        return new Response<IEnumerable<ClienteViewModel>>(viewModels);
+        var clientes = await clienteRepository.ConsultarTodos();
+        return clientes.Select(c => new ClienteViewModel(c));
     }
 }
