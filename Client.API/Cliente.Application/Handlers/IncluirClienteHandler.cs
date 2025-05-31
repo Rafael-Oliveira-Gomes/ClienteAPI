@@ -32,7 +32,7 @@ public class IncluirClienteHandler : IRequestHandler<IncluirClienteCommand, Resp
 
          await _clienteRepository.AddAsync(cliente);
 
-        var clienteViewModel = new ClienteViewModel(Cliente: cliente);
+        var clienteViewModel = new ClienteViewModel(cliente);
 
         return new (clienteViewModel);
 
