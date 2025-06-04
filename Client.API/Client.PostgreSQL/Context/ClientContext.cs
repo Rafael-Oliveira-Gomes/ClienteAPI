@@ -15,4 +15,5 @@ public class ClientContext : DbContext
 
     public DbSet<Cliente> Clientes { get; set; }
     public DbSet<Tatuador> Tatuadores { get; set; }
+    public DbSet<Sessao> Sessoes { get; set; }
 }

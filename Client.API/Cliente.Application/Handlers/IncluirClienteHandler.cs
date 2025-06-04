@@ -7,14 +7,8 @@ using ClienteEntity = Client.Domain.Entities.Cliente;
 
 namespace Cliente.Application.Handlers;
 
-public class IncluirClienteHandler : IRequestHandler<IncluirClienteCommand, Response<ClienteViewModel>>
+public class IncluirClienteHandler(IClienteRepository clienteRepository) : IRequestHandler<IncluirClienteCommand, Response<ClienteViewModel>>
 {
-    private readonly IClienteRepository _clienteRepository;
-    public IncluirClienteHandler(IClienteRepository clienteRepository)
-    {
-        _clienteRepository = clienteRepository;
-    }
-
     public async Task<Response<ClienteViewModel>> Handle(IncluirClienteCommand request, CancellationToken cancellationToken)
     {
         var cliente = new ClienteEntity
@@ -30,7 +24,7 @@ public class IncluirClienteHandler : IRequestHandler<IncluirClienteCommand, Resp
             NomeSocial = request.Cliente.NomeSocial
         };
 
-         await _clienteRepository.AddAsync(cliente);
+         await clienteRepository.AddAsync(cliente);
 
         var clienteViewModel = new ClienteViewModel(cliente);
 

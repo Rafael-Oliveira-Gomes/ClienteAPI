@@ -18,6 +18,7 @@ public static class AddRepositorySetup
         services.AddScoped<IBaseRepository<Cliente>, BaseRepository<Cliente>>();
         services.AddScoped<IClienteRepository, ClienteRepository>();
         services.AddScoped<ITatuadorRepository, TatuadorRepository>();
+        services.AddScoped<ISessaoRepository, SessaoRepository>();
         return services;
     }
 }
