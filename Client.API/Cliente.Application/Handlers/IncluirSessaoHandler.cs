@@ -11,19 +11,19 @@ public class IncluirSessaoHandler(ISessaoRepository sessaoRepository, ITatuadorR
 {
     public async Task<Response<SessaoViewModel>> Handle(IncluirSessaoCommand request, CancellationToken cancellationToken)
     {
-        var tatuador = await tatuadorRepository.ConsultarPorId(request.sessaoDto.TatuadorId);
-        var cliente = await clienteRepository.ConsultarPorId(request.sessaoDto.ClienteId);
+        var tatuador = await tatuadorRepository.ConsultarPorId(request.Sessao.TatuadorId);
+        var cliente = await clienteRepository.ConsultarPorId(request.Sessao.ClienteId);
         var sessao = new Sessao
         {
             tatuador = tatuador!,
             cliente = cliente!,
-            DataHora = request.sessaoDto.DataAgendamento,
-            Duracao = request.sessaoDto.Duracao,
-            Status = request.sessaoDto.Status,
-            Descricao = request.sessaoDto.DescricaoTatuagem,
-            Local = request.sessaoDto.LocalizacaoCorpo,
-            Observacoes = request.sessaoDto.Observacoes,
-            Cuidados = request.sessaoDto.Cuidados
+            DataHora = request.Sessao.DataAgendamento,
+            Duracao = request.Sessao.Duracao,
+            Status = request.Sessao.Status,
+            Descricao = request.Sessao.DescricaoTatuagem,
+            Local = request.Sessao.LocalizacaoCorpo,
+            Observacoes = request.Sessao.Observacoes,
+            Cuidados = request.Sessao.Cuidados
         };
         await sessaoRepository.AddAsync(sessao);
         var sessaoViewModel = new SessaoViewModel(sessao);

@@ -29,7 +29,7 @@ public class SessaoController : ControllerBase
     /// <param name="cancellationToken">Token para cancelamento da operação assíncrona.</param>
     /// <returns>Retorna 200 (OK) se criado com sucesso ou 400 (Bad Request) em caso de erro.</returns>
     [HttpPost]
-    public async Task<IActionResult> IncluirSessao([FromBody] IncluirSessaoCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateSessao([FromBody] IncluirSessaoCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
         return result.IsSuccess ? Ok(result) : BadRequest(result);

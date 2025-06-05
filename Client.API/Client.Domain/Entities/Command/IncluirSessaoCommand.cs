@@ -5,4 +5,4 @@ using MediatR;
 
 namespace Client.Domain.Entities.Command;
 
-public record class IncluirSessaoCommand(SessaoDto sessaoDto) : IRequest<Response<SessaoViewModel>>;
+public record class IncluirSessaoCommand(SessaoDto Sessao) : IRequest<Response<SessaoViewModel>>;

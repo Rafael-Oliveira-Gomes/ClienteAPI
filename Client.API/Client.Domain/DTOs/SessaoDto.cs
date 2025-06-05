@@ -2,14 +2,14 @@
 
 public class SessaoDto
 {
-    public int ClienteId { get; init; }
-    public DateTime DataAgendamento { get; init; }
-    public string DescricaoTatuagem { get; init; } = string.Empty;
-    public float Duracao { get; init; }
-    public string LocalizacaoCorpo { get; init; } = string.Empty;
-    public string Observacoes { get; init; } = string.Empty;
-    public decimal Preco { get; init; }
-    public string Status { get; init; } = string.Empty;
-    public string Cuidados { get; init; } = string.Empty;
-    public int TatuadorId { get; init; }
+    public int ClienteId { get; set; }
+    public int TatuadorId { get; set; }
+    public DateTime DataAgendamento { get; set; }
+    public float Duracao { get; set; }
+    public string DescricaoTatuagem { get; set; } = string.Empty;
+    public string LocalizacaoCorpo { get; set; } = string.Empty;
+    public decimal Preco { get; set; }
+    public string Status { get; set; } = string.Empty;
+    public string Cuidados { get; set; } = string.Empty;
+    public string Observacoes { get; set; } = string.Empty;
 }
