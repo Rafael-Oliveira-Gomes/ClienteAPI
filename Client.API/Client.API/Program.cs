@@ -1,8 +1,7 @@
 using Client.API.Extensions.SwaggerConfigurations;
 using Client.API.Extensions;
 using Client.PostgreSQL.Repositories;
-
-using Cliente.Application.Handlers;
+using Cliente.Application.Handlers.Cliente;
 
 /// <summary>
 /// Classe principal do aplicativo Cliente API.

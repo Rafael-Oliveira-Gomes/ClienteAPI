@@ -1,4 +1,4 @@
-﻿using Cliente.Application.Handlers;
+﻿using Cliente.Application.Handlers.Cliente;
 using FluentValidation;
 
 namespace Client.API.Extensions;

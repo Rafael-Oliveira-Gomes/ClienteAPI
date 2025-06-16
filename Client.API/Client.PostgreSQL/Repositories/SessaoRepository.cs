@@ -30,4 +30,12 @@ public class SessaoRepository : BaseRepository<Sessao>, ISessaoRepository
             .Where(s => s.DataHora >= inicio && s.DataHora <= fim)
             .ToListAsync();
     }
+
+    public async Task<IEnumerable<Sessao>> ConsultarTodos()
+    {
+        return await _context.Sessoes
+            .Include(s => s.tatuador)
+            .Include(s => s.cliente)
+            .ToListAsync();
+    }
 }

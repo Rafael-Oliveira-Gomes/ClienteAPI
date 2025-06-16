@@ -1,11 +1,10 @@
-﻿using Client.Domain.Entities;
-using Client.Domain.Entities.Command;
+﻿using Client.Domain.Entities.Command;
 using Client.Domain.Entities.ViewModel;
 using Client.Domain.Repositories;
 using Client.Domain.Shareds;
 using MediatR;
 
-namespace Cliente.Application.Handlers;
+namespace Cliente.Application.Handlers.Sessao;
 
 public class IncluirSessaoHandler(ISessaoRepository sessaoRepository, ITatuadorRepository tatuadorRepository, IClienteRepository clienteRepository) : IRequestHandler<IncluirSessaoCommand, Response<SessaoViewModel>>
 {
@@ -13,7 +12,7 @@ public class IncluirSessaoHandler(ISessaoRepository sessaoRepository, ITatuadorR
     {
         var tatuador = await tatuadorRepository.ConsultarPorId(request.Sessao.TatuadorId);
         var cliente = await clienteRepository.ConsultarPorId(request.Sessao.ClienteId);
-        var sessao = new Sessao
+        var sessao = new Client.Domain.Entities.Sessao
         {
             tatuador = tatuador!,
             cliente = cliente!,

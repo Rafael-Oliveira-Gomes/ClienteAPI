@@ -3,9 +3,9 @@ using Client.Domain.Entities.ViewModel;
 using Client.Domain.Repositories;
 using Client.Domain.Shareds;
 using MediatR;
-using ClienteEntity = Client.Domain.Entities.Cliente; 
+using ClienteEntity = Client.Domain.Entities.Cliente;
 
-namespace Cliente.Application.Handlers;
+namespace Cliente.Application.Handlers.Cliente;
 
 public class IncluirClienteHandler(IClienteRepository clienteRepository) : IRequestHandler<IncluirClienteCommand, Response<ClienteViewModel>>
 {

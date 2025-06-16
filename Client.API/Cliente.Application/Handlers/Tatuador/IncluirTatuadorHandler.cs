@@ -4,7 +4,7 @@ using Client.Domain.Repositories;
 using Client.Domain.Shareds;
 using MediatR;
 
-namespace Cliente.Application.Handlers;
+namespace Cliente.Application.Handlers.Tatuador;
 
 public class IncluirTatuadorHandler : IRequestHandler<IncluirTatuadorCommand, Response<TatuadorViewModel>>
 {

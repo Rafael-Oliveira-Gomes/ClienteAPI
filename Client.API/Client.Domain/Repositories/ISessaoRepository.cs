@@ -6,4 +6,5 @@ public interface ISessaoRepository : IBaseRepository<Sessao>
 {
     Task<Sessao?> ConsultarPorId(int id);
     Task<IEnumerable<Sessao>> ConsultarSessaoPorDia(DateOnly diaSessao);
+    Task<IEnumerable<Sessao>> ConsultarTodos();
 }

@@ -3,7 +3,7 @@ using Client.Domain.Queries;
 using Client.Domain.Repositories;
 using MediatR;
 
-namespace Tatuador.Application.Handlers;
+namespace Cliente.Application.Handlers.Tatuador;
 
 public class ObterTatuadoresAtivosHandler(ITatuadorRepository tatuadorRepository) : IRequestHandler<TatuadoresAtivosQuery, IEnumerable<TatuadorViewModel>>
 {

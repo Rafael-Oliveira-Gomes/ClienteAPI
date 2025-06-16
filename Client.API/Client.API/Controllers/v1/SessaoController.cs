@@ -1,4 +1,5 @@
 ﻿using Client.Domain.Entities.Command;
+using Client.Domain.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,5 +34,17 @@ public class SessaoController : ControllerBase
     {
         var result = await _mediator.Send(command, cancellationToken);
         return result.IsSuccess ? Ok(result) : BadRequest(result);
+    }
+
+    /// <summary>
+    /// Obtém todas as sessões cadastradas.
+    /// </summary>
+    /// <param name="cancellationToken">Token para cancelamento da operação assíncrona.</param>
+    /// <returns>Retorna 200 (OK) com a lista de sessões.</returns>
+    [HttpGet]
+    public async Task<IActionResult> GetAllSessoes(CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(new TodasSessaoQuery(), cancellationToken);
+        return Ok(result);
     }
 }

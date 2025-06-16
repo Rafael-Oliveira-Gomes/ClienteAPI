@@ -4,7 +4,7 @@ using Client.Domain.Repositories;
 using Client.Domain.Shareds;
 using MediatR;
 
-namespace Tatuador.Application.Handlers;
+namespace Cliente.Application.Handlers.Tatuador;
 
 public class ObterTatuadorHandler(ITatuadorRepository tatuadorRepository) : IRequestHandler<TatuadorQuery, Response<TatuadorViewModel>>
 {
