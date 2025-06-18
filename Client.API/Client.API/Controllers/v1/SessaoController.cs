@@ -26,9 +26,6 @@ public class SessaoController : ControllerBase
     /// <summary>
     /// Cria uma nova sessão.
     /// </summary>
-    /// <param name="command">Comando contendo os dados da sessão a ser criada.</param>
-    /// <param name="cancellationToken">Token para cancelamento da operação assíncrona.</param>
-    /// <returns>Retorna 200 (OK) se criado com sucesso ou 400 (Bad Request) em caso de erro.</returns>
     [HttpPost]
     public async Task<IActionResult> CreateSessao([FromBody] IncluirSessaoCommand command, CancellationToken cancellationToken)
     {
@@ -39,12 +36,27 @@ public class SessaoController : ControllerBase
     /// <summary>
     /// Obtém todas as sessões cadastradas.
     /// </summary>
-    /// <param name="cancellationToken">Token para cancelamento da operação assíncrona.</param>
-    /// <returns>Retorna 200 (OK) com a lista de sessões.</returns>
     [HttpGet]
     public async Task<IActionResult> GetAllSessoes(CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(new TodasSessaoQuery(), cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Obtém uma sessão pelo ID.
+    /// </summary>
+    /// <param name="sessaoId">ID da sessão a ser consultada.</param>
+    /// <param name="cancellationToken">Token para cancelamento da operação assíncrona.</param>
+    /// <returns>Retorna 200 (OK) com a sessão ou 404 (Not Found) se não encontrada.</returns>
+    [HttpGet("{sessaoId:int}")]
+    public async Task<IActionResult> GetSessaoById([FromRoute] int sessaoId, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(new SessaoQuery(sessaoId), cancellationToken);
+
+        if (result == null)
+            return NotFound();
+
         return Ok(result);
     }
 }

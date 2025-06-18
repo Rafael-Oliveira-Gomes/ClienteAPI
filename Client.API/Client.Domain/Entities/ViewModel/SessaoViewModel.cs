@@ -15,6 +15,7 @@ public record class SessaoViewModel
 
     public SessaoViewModel(Sessao sessao)
     {
+        Id = sessao.Id;
         this.tatuador = sessao.tatuador ?? throw new ArgumentNullException(nameof(sessao.tatuador));
         this.cliente = sessao.cliente ?? throw new ArgumentNullException(nameof(sessao.cliente));
         DataHora = sessao.DataHora;
