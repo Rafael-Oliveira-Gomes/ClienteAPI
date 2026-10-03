@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.13.35828.75 d17.13
+# Visual Studio Version 18
+VisualStudioVersion = 18.10.12224.181 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.API", "Client.API\Client.API.csproj", "{E408281A-9E45-4C98-B17B-4122FAC3F706}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.PostgreSQL", "Client.PostgreSQL\Client.PostgreSQL.csproj", "{7B9A7DF0-5B0F-4178-BA76-68BEC647788F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Infra", "Client.PostgreSQL\Client.Infra.csproj", "{7B9A7DF0-5B0F-4178-BA76-68BEC647788F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Domain", "Client.Domain\Client.Domain.csproj", "{C2E20F7F-B42D-47CA-B0FC-AEC246A306E4}"
 EndProject
