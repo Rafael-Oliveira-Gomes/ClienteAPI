@@ -1,4 +1,6 @@
-﻿namespace Client.Domain.Entities;
+﻿using Client.Domain.Enums;
+
+namespace Client.Domain.Entities;
 public class Tatuador
 {
     public int Id { get; set; }
@@ -10,12 +12,13 @@ public class Tatuador
     public int AnoExperiencia { get; set; }
     public string Especialidade { get; set; } = string.Empty;
     public string Portifolio { get; set; } = string.Empty;
-    public bool Ativo { get; set; } = true;
     public string Observacao { get; set; } = string.Empty;
+    public TipoTatuador TipoTatuador { get; set; }
+    public StatusTatuador StatusTatuador { get; set; }
 
     public Tatuador() { }
 
-    public Tatuador(string nome, string nomeArtistico, DateOnly dataNascimento, string email, string telefone, int anoExperiencia, string especialidade, string portifolio, bool ativo, string observacao)
+    public Tatuador(string nome, string nomeArtistico, DateOnly dataNascimento, string email, string telefone, int anoExperiencia, string especialidade, string portifolio, string observacao, TipoTatuador tipoTatuador, StatusTatuador statusTatuador)
     {
         Nome = nome;
         NomeArtistico = nomeArtistico;
@@ -25,7 +28,8 @@ public class Tatuador
         AnoExperiencia = anoExperiencia;
         Especialidade = especialidade;
         Portifolio = portifolio;
-        Ativo = ativo;
         Observacao = observacao;
+        TipoTatuador = tipoTatuador;
+        StatusTatuador = statusTatuador;
     }
 }

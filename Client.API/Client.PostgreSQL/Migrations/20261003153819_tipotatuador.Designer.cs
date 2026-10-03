@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Client.PostgreSQL.Migrations
 {
     [DbContext(typeof(ClientContext))]
-    [Migration("20250530190652_tatuador")]
-    partial class tatuador
+    [Migration("20261003153819_tipotatuador")]
+    partial class tipotatuador
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,6 +71,55 @@ namespace Client.PostgreSQL.Migrations
                     b.ToTable("Clientes");
                 });
 
+            modelBuilder.Entity("Client.Domain.Entities.Sessao", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Cuidados")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DataHora")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<float>("Duracao")
+                        .HasColumnType("real");
+
+                    b.Property<string>("Local")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Observacoes")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("clienteId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("tatuadorId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("clienteId");
+
+                    b.HasIndex("tatuadorId");
+
+                    b.ToTable("Sessoes");
+                });
+
             modelBuilder.Entity("Client.Domain.Entities.Tatuador", b =>
                 {
                     b.Property<int>("Id")
@@ -112,13 +161,38 @@ namespace Client.PostgreSQL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("StatusTatuador")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Telefone")
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("TipoTatuador")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.ToTable("Tatuadores");
+                });
+
+            modelBuilder.Entity("Client.Domain.Entities.Sessao", b =>
+                {
+                    b.HasOne("Client.Domain.Entities.Cliente", "cliente")
+                        .WithMany()
+                        .HasForeignKey("clienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Client.Domain.Entities.Tatuador", "tatuador")
+                        .WithMany()
+                        .HasForeignKey("tatuadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("cliente");
+
+                    b.Navigation("tatuador");
                 });
 #pragma warning restore 612, 618
         }

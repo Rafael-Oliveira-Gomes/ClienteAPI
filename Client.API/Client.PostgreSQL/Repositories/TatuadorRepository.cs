@@ -1,4 +1,5 @@
 ﻿using Client.Domain.Entities;
+using Client.Domain.Enums;
 using Client.Domain.Repositories;
 using Client.PostgreSQL.Context;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +25,7 @@ public class TatuadorRepository : BaseRepository<Tatuador>, ITatuadorRepository
     public async Task<IEnumerable<Tatuador>> ConsultarTodosAtivos()
     {
         return await _context.Tatuadores
-            .Where(t => t.Ativo)
+            .Where(t => t.StatusTatuador == StatusTatuador.Ativo)
             .ToListAsync();
     }
 }

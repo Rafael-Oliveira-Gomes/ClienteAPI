@@ -1,4 +1,6 @@
-﻿namespace Client.Domain.Entities.ViewModel;
+﻿using Client.Domain.Enums;
+
+namespace Client.Domain.Entities.ViewModel;
 
 public record class TatuadorViewModel(
     int Id,
@@ -10,8 +12,9 @@ public record class TatuadorViewModel(
     int AnoExperiencia,
     string Especialidade,
     string Portifolio,
-    bool Ativo,
-    string Observacao
+    string Observacao,
+    TipoTatuador TipoTatuador,
+    StatusTatuador StatusTatuador
 )
 {
     public TatuadorViewModel(Tatuador tatuador) : this(
@@ -24,8 +27,9 @@ public record class TatuadorViewModel(
         tatuador.AnoExperiencia,
         tatuador.Especialidade,
         tatuador.Portifolio,
-        tatuador.Ativo,
-        tatuador.Observacao
+        tatuador.Observacao,
+        tatuador.TipoTatuador,
+        tatuador.StatusTatuador
     )
     { }
 }

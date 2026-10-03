@@ -26,8 +26,9 @@ public class IncluirTatuadorHandler : IRequestHandler<IncluirTatuadorCommand, Re
             AnoExperiencia = request.Tatuador.AnoExperiencia,
             Especialidade = request.Tatuador.Especialidade,
             Portifolio = request.Tatuador.Portifolio,
-            Ativo = request.Tatuador.Ativo,
             Observacao = request.Tatuador.Observacao,
+            TipoTatuador = (Client.Domain.Enums.TipoTatuador)request.Tatuador.TipoTatuador,
+            StatusTatuador = (Client.Domain.Enums.StatusTatuador)request.Tatuador.StatusTatuador
         };
 
         await _tatuadorRepository.AddAsync(tatuador);

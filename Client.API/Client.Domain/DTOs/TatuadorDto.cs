@@ -12,4 +12,6 @@ public class TatuadorDto
     public string Portifolio { get; set; } = string.Empty;
     public bool Ativo { get; set; } = true;
     public string Observacao { get; set; } = string.Empty;
+    public int TipoTatuador { get; set; }
+    public int StatusTatuador { get; set; }
 }
