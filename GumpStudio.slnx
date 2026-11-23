@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/GumpStudio.Domain/GumpStudio.Domain.csproj" />
+    <Project Path="src/GumpStudio.Application/GumpStudio.Application.csproj" />
+    <Project Path="src/GumpStudio.Infrastructure/GumpStudio.Infrastructure.csproj" />
+    <Project Path="src/GumpStudio.Api/GumpStudio.Api.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/GumpStudio.Tests/GumpStudio.Tests.csproj" />
+  </Folder>
+</Solution>

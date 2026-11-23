@@ -398,3 +398,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# GumpStudio
+storage/
+keys/
+.env
+appsettings.Local.json

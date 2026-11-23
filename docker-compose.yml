@@ -1,0 +1,46 @@
+# Ambiente local: PostgreSQL (+ API opcional).
+#   docker compose up -d db          -> só o banco; rode a API com `dotnet run`
+#   docker compose up -d --build     -> banco + API em container
+services:
+  db:
+    image: postgres:17
+    container_name: gumpstudio-db
+    environment:
+      POSTGRES_DB: gumpstudio
+      POSTGRES_USER: gump
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-gump_dev}
+    ports:
+      - "5432:5432"
+    volumes:
+      - gump-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gump -d gumpstudio"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build: .
+    container_name: gumpstudio-api
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__Default: "Host=db;Port=5432;Database=gumpstudio;Username=gump;Password=${DB_PASSWORD:-gump_dev}"
+      Database__AutoMigrate: "true"
+      # Só para uso local: em produção defina JWT_SIGNING_KEY no .env com uma chave aleatória própria.
+      Jwt__SigningKey: ${JWT_SIGNING_KEY:-chave-somente-para-desenvolvimento-local-0123456789}
+      Google__ClientId: ${GOOGLE_CLIENT_ID:-}
+      Google__ClientSecret: ${GOOGLE_CLIENT_SECRET:-}
+      Google__CalendarRedirectUri: ${GOOGLE_CALENDAR_REDIRECT_URI:-http://localhost:5080/api/calendar/callback}
+      Auth__BootstrapAdminEmail: ${BOOTSTRAP_ADMIN_EMAIL:-}
+      Cors__Origins__0: ${FRONT_ORIGIN:-http://localhost:3000}
+    volumes:
+      - gump-data:/data
+
+volumes:
+  gump-db:
+  gump-data:
